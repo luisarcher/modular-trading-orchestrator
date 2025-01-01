@@ -1,0 +1,25 @@
+# API settings
+telegram_api:
+  api_id: TELEGRAM_API_ID
+  api_hash: TELEGRAM_API_hash
+  user_ids:
+    - 1234567890
+  channel_ids:
+    - 1234567891
+
+binance_api:
+  api_key: API_KEY
+  api_secret: API_SECRET
+  collateral: USDT
+  available_wallet_perc: 0.5
+  leverage: 9
+
+strategy:
+  place_tp_order: false
+  min_tsl_gap: 0.1
+  stop_loss_multiplier: 1.75
+
+# Logging settings (currently not used)
+logging:
+  level: INFO
+  file_path: /path/to/log/file.log

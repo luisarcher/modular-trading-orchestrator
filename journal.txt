@@ -1,0 +1,7 @@
+create telegram bot
+
+-- correcly appent the config to service configuration
+-- run app and test the services and that the corresponding handler is run
+-- write first test
+-- configure telegram session read to read messages from telegram
+
