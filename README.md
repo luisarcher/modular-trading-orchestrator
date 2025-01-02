@@ -36,5 +36,26 @@ Where were we? Yes, receiving message and decoding...
 
 - Strategy: Strategies can be configured locally and one or more can be set by default. The price action will be redirected to the strategy that acts accordingly. It is planned that the strategy could be configured from the service message like "buy btc 80 -tsl 2.8 -e bybit" which translates to "buy 80 usd of bitcoin on bybit exchange and use the trailling stop risk method"
 
+
+### TODO
+
+- [ ] Pytests
+- [ ] BaseExchangeMediator abstract class
+- [ ] flask endpoint that returns a json of current ongoing trades. Use __repr__ and __str__
+- [ ] CommandHandler
+- [ ] ExchangeRegistry
+- [ ] Define the config structure
+
+- [ ] Proper logging rotation
+- [ ] Github semantic releases
+- [ ] Write a proper readme and documentation
+- [ ] Configure web3 exchanges
+- [ ] Pydantic??
+- [ ] ...
+
+
 That's about it, and remember, this readme is an absolute draft
 
+## Commands
+
+keyboard: "quit" - gracefully terminates all services and the application.
