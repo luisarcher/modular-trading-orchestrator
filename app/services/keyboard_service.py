@@ -31,12 +31,6 @@ class KeyboardService(BaseService):
             return test_command
         return await aioconsole.ainput()
 
-    # async def get_keyboard_input(self, test=False, test_command=None):
-    #     if test:
-    #         return test_command
-    #     loop = asyncio.get_event_loop()
-    #     return await loop.run_in_executor(None, input)
-
     async def stop(self):
         logger.info('Stopping Keyboard service...')
         self._running = False
@@ -45,4 +39,4 @@ class KeyboardService(BaseService):
             try:
                 await self.listen_task  # Wait for the task to finish
             except asyncio.CancelledError:
-                pass
+                logger.info('Keyboard service stopped...')

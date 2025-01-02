@@ -49,6 +49,7 @@ class TelegramBotService(BaseService):
             await self.application.updater.shutdown()
             await self.application.stop()
             await self.application.shutdown()
+
             # Cancel the bot task
             self.bot_task.cancel()
             try:

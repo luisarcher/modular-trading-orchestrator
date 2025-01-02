@@ -59,10 +59,12 @@ class FlaskService(BaseService):
         logger.info('Stopping Flask (Quart) server...')
         # Signal the shutdown_trigger to stop the server
         self.should_exit.set()
-        # Wait for the server task to finish
-        try:
-            await self.server_task
-        except asyncio.CancelledError:
-            logger.info('Flask server task was cancelled.')
-        except Exception as e:
-            logger.error(f'An error occurred while stopping the Flask server: {e}')
+
+        if self.server_task:
+            self.server_task.cancel()
+            try:
+                await self.server_task
+            except asyncio.CancelledError:
+                logger.info('Flask (Quart) server task was cancelled.')
+            except Exception as e:
+                logger.error(f'An error occurred while stopping the Quart server: {e}')

@@ -30,4 +30,5 @@ class EventBus:
                 self._queue.task_done()
             except asyncio.exceptions.CancelledError:
                 logger.error("EventBus cancelled")
+                break
             
