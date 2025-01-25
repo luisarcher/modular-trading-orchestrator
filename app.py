@@ -27,7 +27,8 @@ async def main():
     # exchange_mediator = ExchangeMediator(BinanceExchange())
     # exchange_mediator.start()  # Assuming there's an async initialization
 
-    exchange_mediator = MockExchangeMediator(None)
+    #exchange_mediator = MockExchangeMediator(None)
+    exchange_mediator = ExchangeMediator(BinanceExchange())
     await exchange_mediator.start()
 
     # Initialize and subscribe MessageHandler

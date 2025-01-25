@@ -1,5 +1,6 @@
 import logging
-from quart import Quart
+from quart import Quart, request, abort
+from app.events.event_bus import EventBus
 from app.services.base_service import BaseService
 import asyncio
 
@@ -8,7 +9,7 @@ logger = logging.getLogger(__name__)
 class FlaskService(BaseService):
     def __init__(self, event_bus):
         self.app = Quart(__name__)
-        self.event_bus = event_bus
+        self.event_bus: EventBus = event_bus
         self.setup_routes()
         self.should_exit = asyncio.Event()
         self.server_task = None
@@ -26,6 +27,28 @@ class FlaskService(BaseService):
         async def shutdown():
             await self.event_bus.publish('shutdown', 'shutdown')
             return 'Shutting down...'
+        
+        @self.app.route('/tradingview', methods=['POST'])
+        async def tradingview():
+            await self.event_bus.publish('tradesignal', request.get_data(as_text=True))
+            if request.method == 'POST':
+                # Parse the string data from TradingView into a python dict
+                # Example of the data received:
+                # { "ticker":"MATIC", "side":"Buy"}
+                data = parse_webhook()
+                if data is None:
+                    return 'nok', 404
+
+                # Create a new thread to handle the alert
+                th = threading.Thread(target=handle_alert_thread, args=(data,))
+                th.start()
+
+                print('POST Received:', data)
+                return 'ok', 200
+            else:
+                abort(400)
+        
+
 
     async def before_serving(self):
         """Function to run before the server starts serving."""

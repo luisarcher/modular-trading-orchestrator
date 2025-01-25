@@ -78,6 +78,8 @@ class Trade:
 
     def update_stop_loss_order(self):
 
+        return # Disable SL order updates for now
+
         try:
             side = Trade.get_buy_sell_position_side(Trade.get_counter_LS_side(self.side_LS))
             if self.stop_loss_order is None:

@@ -39,6 +39,9 @@ Where were we? Yes, receiving message and decoding...
 
 ### TODO
 
+- [ ] Stop trade
+- [ ] Enter trade check if trade exists and add to position unless config says otherwise
+
 - [ ] Pytests
 - [ ] BaseExchangeMediator abstract class
 - [ ] flask endpoint that returns a json of current ongoing trades. Use __repr__ and __str__
